@@ -12,13 +12,13 @@ exports.config = {
   output: 'e2e/outputs',
   helpers: {
     Puppeteer: {
-      url: 'http://192.168.0.5:8080/',
+      url: 'http://127.0.0.1:8080/',
       show: true,
-      windowSize: '1200x900'
-    }
+      windowSize: '1200x900',
+    },
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
   },
-  name: 'expert-submission 2 - revisi 3'
-}
+  name: 'expert-submission 2 - revisi 3',
+};

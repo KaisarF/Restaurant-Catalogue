@@ -30,10 +30,14 @@
       </div>
     </div>
       </nav>
-      <img src="../public/images/hero-image_2.jpg" width="100%" alt="restoku wallpaper" />
+      <picture>
+        <source media="(max-width:600px)" srcset="../public/images/hero-image_2-small.jpg" >
+        <img class="lazyload"  data-src="../public/images/hero-image_2.jpg" width="100%" alt="restoku wallpaper" />
+      </picture>
+      
     </header>
 
-    <main id="catalog">
+    <main id="catalog" tabindex="0">
       
     </main>
 

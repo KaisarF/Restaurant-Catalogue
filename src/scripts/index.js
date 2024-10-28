@@ -9,7 +9,6 @@ import CONFIG from './globals/config';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-
 console.log('Hello Coders! :)');
 
 const app = new App({
@@ -30,8 +29,6 @@ window.addEventListener('load', () => {
   FooterToolsInitiator.init({
     subscribeButton: document.querySelector('#subscribePushNotification'),
     unsubscribeButton: document.querySelector('#unsubscribePushNotification'),
- 
+
   });
 });
-
- 

@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
@@ -30,7 +30,40 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        dependency: { not: ['url'] },
+        type: 'asset/resource',
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\/]node_modules[\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -41,9 +74,8 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/public/'),
-          to: path.resolve(__dirname, 'dist/'),
+          to: path.resolve(__dirname, 'dist/public/'),
           globOptions: {
-            ignore: ['**/images/**'],
           },
         },
       ],
@@ -68,8 +100,8 @@ module.exports = {
       overrideExtension: true,
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode:"static",
-      openAnalyzer:"false",
+      analyzerMode: 'static',
+      openAnalyzer: 'false',
     }),
   ],
 };

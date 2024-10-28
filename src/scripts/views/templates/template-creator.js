@@ -4,7 +4,7 @@ import CONFIG from '../../globals/config';
 const createRestaurantDetailTemplate = (restaurant) => `
 <main id="catalog">
 <article class="restoDetail" tabindex="0">
-          <img class="resto__image lazyload" src="${CONFIG.BASE_IMAGE_URL}${restaurant.restaurant.pictureId}" alt="${restaurant.restaurant.title}" />
+          <img class="resto__image lazyload" data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.restaurant.pictureId}" alt="${restaurant.restaurant.title}" />
           <div class="resto__content">
             <h2 class="resto__name">${restaurant.restaurant.name}</h2>
             <p class="resto__city">${restaurant.restaurant.city}</p>
@@ -54,7 +54,7 @@ ${restaurant.restaurant.menus.drinks.map((drink) => `
 
 const createRestaurantItemTemplate = (restaurant) => `
 <article class="resto" tabindex="0">
-          <img class="resto__image lazyload" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.title}" />
+          <img class="resto__image lazyload" data-src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.title}" />
           <div class="resto__content">
 
             <h2 class="resto__name"><a href="/#/detail/${restaurant.id}">${restaurant.name}</a></h2>
